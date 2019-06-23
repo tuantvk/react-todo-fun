@@ -1,13 +1,104 @@
-body {
+* {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial,
+    sans-serif;
+  background: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+  cursor: url('https://github.com/chenglou/react-motion/raw/master/demos/demo8-draggable-list/cursor.png') 39 39, auto;
+}
+#root {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  perspective: 350px;
+  perspective-origin: 50% 50%;
+  background: #2d4059; /* fallback for old browsers */
+}
+.centered {
+  width: 400px;
+  height: 50px;
+}
+.group {
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  margin: 20px;
+}
+label {
+  position: absolute;
+  top: 36.66667px;
+  color: rgba(255, 255, 255, .5);
+  font: 400 550px/15 Roboto;
+  cursor: text;
+  transition: 0.25s ease;
+}
+input {
+  display: block;
+  width: 100%;
+  padding-top: 28px;
+  border: none;
+  border-radius: 0;
+  color: white;
+  background: #333;
+  font-size: 18px;
+  transition: 0.3s ease;
+  padding: 10px;
+}
+input:valid > label {
+  top: 0;
+  font: 700 550px/25 Roboto;
+  color: rgba(255, 255, 255, .5);
+}
+input:focus {
+  outline: none;
+}
+input:focus > label {
+  top: 0;
+  font: 700 550px/25 Roboto;
+  color: #2196f3;
+}
+input:focus ~ .bar:before {
+  transform: translateX(0);
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #333 inset;
+  -webkit-text-fill-color: white !important;
+}
+.bar {
+  background: rgba(255, 255, 255, .5);
+  content: '';
+  width: 400px;
+  height: 3.66667px;
+  transition: 0.3s ease;
+  position: relative;
+}
+.bar:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 150%;
+  background: #2196f3;
+  transform: translateX(-100%);
+}
+::selection {
+  background: rgba(33, 150, 243, .3);
 }

@@ -10,8 +10,7 @@ body {
   padding: 0;
 }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial,
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, ubuntu, roboto, segoe ui, arial, sans-serif;
   background: transparent;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -19,8 +18,8 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  cursor: default;
-  cursor: url('https://github.com/chenglou/react-motion/raw/master/demos/demo8-draggable-list/cursor.png') 39 39, auto;
+  cursor: auto;
+  cursor: url('./shooting-target.png') 39 39, auto;
 }
 #root {
   overflow: hidden;
@@ -30,10 +29,10 @@ body {
   height: 100%;
   perspective: 350px;
   perspective-origin: 50% 50%;
-  background: #2d4059; /* fallback for old browsers */
+  background: #2d4059;
 }
 .centered {
-  width: 400px;
+  width: 450px;
   height: 50px;
 }
 .group {
@@ -86,7 +85,7 @@ input:-webkit-autofill {
 .bar {
   background: rgba(255, 255, 255, .5);
   content: '';
-  width: 400px;
+  width: 450px;
   height: 3.66667px;
   transition: 0.3s ease;
   position: relative;
@@ -101,4 +100,10 @@ input:-webkit-autofill {
 }
 ::selection {
   background: rgba(33, 150, 243, .3);
+}
+.card {
+  background: #2196f3;
+  height: 150px;
+  width: 250px;
+  border-radius: 8px;
 }

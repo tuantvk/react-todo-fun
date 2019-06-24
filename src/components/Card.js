@@ -1,48 +1,27 @@
 import React from 'react';
+import { useSpring, animated } from 'react-spring';
 import { useGesture } from 'react-use-gesture';
-import { useSprings, a } from 'react-spring';
+import { clamp } from './utils';
+import checkIcon from '../assets/checked.png';
+import xIcon from '../assets/x-button.png';
 
-const { width, height } = window.screen;
-const widthCard = 250;
-const heightCard = 150;
+const Card = ({ title, zIndex, color, id }) => {
+  const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }))
+  const bind = useGesture(({ delta, velocity }) => {
+    velocity = clamp(velocity, 1, 8)
+    set({ xy: delta, config: { mass: velocity, tension: 500 * velocity, friction: 50 } })
+  });
 
-const _checkWidth = x => {
-  if (x > 0 && x < width) {
-    return x;
-  }
-  if (x <= 0) {
-    return 0;
-  } return width - widthCard;
+  return <animated.div
+    className={`card card-${id}`} {...bind()}
+    style={{
+      backgroundColor: color,
+      transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`),
+      top: `${150 + (zIndex * 25)}px`,
+      left: `${40 + (zIndex * 12)}px`
+    }}>
+    <span>{title}</span>
+  </animated.div>
 }
 
-const _checkHeight = x => {
-  if (x > 0 && x < height) {
-    return x;
-  }
-  if (x <= 0) {
-    return 0;
-  } return height - heightCard;
-}
-
-const Cards = props => {
-
-  const [springs, set] = useSprings(3, i => ({
-    xyz: [0, -i * 30, 0],
-    config: { mass: 1 + i * 2, tension: 700 - i * 100, friction: 30 + i * 20 }
-  }))
-
-  const transform = i => springs[i].xyz.interpolate((x, y, z) =>
-    `translate3d(${_checkWidth(x)}px,${_checkHeight(y)}px,0) rotateZ(${z}deg`
-  )
-
-  const bind = useGesture(({ local: [x, y], down }) => set(i => ({ xyz: [x + down * i * 20, y - i * 30 - down * i * 120, down * i * 10] })))
-
-  return new Array(1).fill().map((_, index) => (
-    <a.div className="card" key={index} {...bind()} style={{ transform: transform(3 - index - 1) }}>
-      <p>{props.title}</p>
-    </a.div>
-  ))
-  
-}
-
-export default Cards;
+export default Card;

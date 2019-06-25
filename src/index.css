@@ -57,3 +57,11 @@ input:focus {
   overflow: hidden;
   position: absolute;
 }
+.cancel {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 999
+}

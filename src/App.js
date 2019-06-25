@@ -2,6 +2,7 @@ import React from 'react';
 import Input from './components/Input';
 import Card from './components/Card';
 import Colors from './components/Colors';
+import _remove from 'lodash/remove';
 
 class App extends React.Component {
 
@@ -24,13 +25,19 @@ class App extends React.Component {
     this.setState({ todos });
   }
 
+  _removeTodo = id => {
+    let todos = [...this.state.todos];
+    _remove(todos, x => x.id === id);
+    this.setState({ todos });
+  }
+
   render() {
     const { todos } = this.state;
     return (
       <>
         <Input addTodo={this._addTodo} />
         {todos.map((todo, index) =>
-          <Card key={index} {...todo} />
+          <Card key={index} {...todo} removeTodo={this._removeTodo} />
         )}
       </>
     )

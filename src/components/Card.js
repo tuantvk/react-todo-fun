@@ -1,14 +1,14 @@
 import React from 'react';
 import { useSpring, animated } from 'react-spring';
 import { useGesture } from 'react-use-gesture';
-import { clamp } from './utils';
-import checkIcon from '../assets/checked.png';
-import xIcon from '../assets/x-button.png';
+import _clamp from 'lodash/clamp';
+import cancel from '../cancel.svg';
 
-const Card = ({ title, zIndex, color, id }) => {
+const Card = ({ title, zIndex, color, id, removeTodo }) => {
   const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }))
+
   const bind = useGesture(({ delta, velocity }) => {
-    velocity = clamp(velocity, 1, 8)
+    velocity = _clamp(velocity, 1, 8)
     set({ xy: delta, config: { mass: velocity, tension: 500 * velocity, friction: 50 } })
   });
 
@@ -18,8 +18,10 @@ const Card = ({ title, zIndex, color, id }) => {
       backgroundColor: color,
       transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`),
       top: `${150 + (zIndex * 25)}px`,
-      left: `${40 + (zIndex * 12)}px`
+      left: `${40 + (zIndex * 12)}px`,
+      zIndex: zIndex
     }}>
+    <img onClick={() => removeTodo(id)} src={cancel} className="cancel" alt="cancel" />
     <span>{title}</span>
   </animated.div>
 }

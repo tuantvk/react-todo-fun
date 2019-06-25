@@ -49,7 +49,6 @@ input:focus {
   width: 550px
 }
 .card {
-  height: 120px;
   width: 250px;
   padding: 15px 20px;
   border-radius: 4px;
@@ -57,11 +56,18 @@ input:focus {
   overflow: hidden;
   position: absolute;
 }
-.cancel {
+.icon {
   width: 20px;
   height: 20px;
   position: absolute;
   right: 5px;
   top: 5px;
-  z-index: 999
+  z-index: 999;
+  cursor: pointer;
+}
+.cancel {
+  right: 5px;
+}
+.checked {
+  right: 32px;
 }

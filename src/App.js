@@ -2,7 +2,8 @@ import React from 'react';
 import Input from './components/Input';
 import Card from './components/Card';
 import Colors from './components/Colors';
-import _remove from 'lodash/remove';
+import _map from 'lodash/map';
+import { STATUS } from './components/utils';
 
 class App extends React.Component {
 
@@ -20,6 +21,7 @@ class App extends React.Component {
       id: todos.length,
       title,
       color,
+      status: STATUS.DOING,
       zIndex: todos.length
     });
     this.setState({ todos });
@@ -27,7 +29,13 @@ class App extends React.Component {
 
   _removeTodo = id => {
     let todos = [...this.state.todos];
-    _remove(todos, x => x.id === id);
+    _map(todos, x => x.id === id ? x.status = STATUS.REMOVE : x);
+    this.setState({ todos });
+  }
+
+  _doneTodo = id => {
+    let todos = [...this.state.todos];
+    _map(todos, x => x.id === id ? x.status = STATUS.DONE : x);
     this.setState({ todos });
   }
 
@@ -37,7 +45,13 @@ class App extends React.Component {
       <>
         <Input addTodo={this._addTodo} />
         {todos.map((todo, index) =>
-          <Card key={index} {...todo} removeTodo={this._removeTodo} />
+          <Card
+            done={todo.status === STATUS.DONE ? true : false}
+            disabled={todo.status === STATUS.REMOVE ? true : false}
+            key={index} {...todo}
+            removeTodo={this._removeTodo}
+            doneTodo={this._doneTodo}
+          />
         )}
       </>
     )

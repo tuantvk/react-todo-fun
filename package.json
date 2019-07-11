@@ -1,7 +1,10 @@
 {
   "name": "react-todo-fun",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.1",
+  "author": {
+    "name": "TuanTVK",
+    "url": "https://tuantvk.github.io"
+  },
   "dependencies": {
     "lodash": "^4.17.11",
     "react": "^16.8.6",

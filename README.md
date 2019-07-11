@@ -2,7 +2,7 @@
 
 Make todo list use react with animated
 
-![Demo layout](https://github.com/tuantvk/react-todo-fun/tree/master/src/assets/img/example.gif)
+![Demo layout](https://github.com/tuantvk/react-todo-fun/blob/master/src/assets/img/example.gif)
 
 ## Development
 
